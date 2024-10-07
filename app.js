@@ -34,3 +34,29 @@ function operate(a,b,c){
     
 }
 
+const calculator = {
+    clear: "c",
+    toggle: "±",
+    percent: "%",
+    divide: "/",
+    number : [0,1,2,3,4,5,6,7,8,9,],
+    period: ".",
+    equals: "=",
+    plus: "+",
+    minus: "-",
+    multiply: "*",
+    add: function (a,b){
+        return this.number[a] + this.number[b]
+    },
+    subtract: function(a,b){
+        return this.number[a] - this.number[b]
+    },
+    multiply: function(a,b){
+        return this.number[a] * this.number[b]
+    },
+    divide: function(a,b){
+        return this.number[a] / this.number[b]
+    }
+
+
+}
