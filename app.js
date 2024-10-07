@@ -1,39 +1,36 @@
-let addition 
-let subtraction
-let multiplication
-let division
-
+const button = document.querySelectorAll("button")
 
 function add(a, b){
     return a+b
 }
 
-function subtract(numOne, numTwo){
-    return numOne-numTwo
+function subtract(a, b){
+    return a-b
 }
 
-function multiply(numOne, numTwo){
-    return numOne * numTwo
+function multiply(a, b){
+    return a * b
 }
 
-function divide(numOne, numTwo){
-    return numOne/numTwo
+function divide(a, b){
+    return a/b
 }
 
-function operate(numOne,numTwo,operator){
+function operate(a,b,c){
     let total = 0
-    if(operator === addition){
-        total = add(numOne,numTwo)
-        console.log(total)
-    }else if(operator=== subtraction){
-        total = sub(numOne,numTwo)
-        console.log(total)
-    }else if(operator === multiplication){
-        total = multiply(numOne,numTwo)
-        console.log(total)
-    }else if(operator === division){
-        total = divide(numOne,numTwo)
-        console.log(total)
+    if(c==add){
+        total = add(a,b)
+        return total
+    }else if(c==subtract){
+        total = subtract(a,b)
+        return total
+    }else if(c == multiply){
+        total = multiply(a,b)
+        return total
+    }else if(c== divide){
+        total = divide(a,b)
+        return total
     }
-
+    
 }
+
