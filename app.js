@@ -9,7 +9,7 @@ let equations =[]
 let number=0
 let total =0
 let operation=""
-display.textContent=total
+
 
 function add(a,b){
     total = a+b
@@ -63,7 +63,10 @@ function operate(a,b,operator){
 //number event listener
 numbers.forEach((number)=>{
     number.addEventListener("click",()=>{
-        display.textContent += number.textContent
+        if(display.textContent.length <=15){
+            display.textContent += number.textContent
+        }
+
     })
 })
 //other button event listener
@@ -72,8 +75,15 @@ buttons.forEach((button)=>{
         operation = button.textContent
         number = display.textContent
         myNumber = Number(number)
-        equations.push(myNumber)
-        equations.push(operation)
+        if(myNumber!=0){
+            equations.push(myNumber)
+        }
+        if(equations[1]){
+            equations[1] = operation
+        }else{
+            equations.push(operation)
+        }
+
         display.textContent=''
     })
 })
@@ -82,7 +92,7 @@ equals.addEventListener("click",()=>{
     firstNumber = display.textContent
     equations.push(Number(firstNumber))
     operate(equations[0], equations[2], equations[1])
-    display.textContent=total
+    display.textContent=total.toFixed(2)
     equations =[]
 })
 
