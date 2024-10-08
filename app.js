@@ -1,95 +1,73 @@
 const buttons = document.querySelectorAll(".button")
-buttons.forEach(button=>{
-    button.addEventListener("click",()=>{
-        console.log(Number(button.innerHTML))
+const display = document.querySelector(".display")
+const numbers = document.querySelectorAll(".numbers")
+const clearButton = document.querySelector('.clear')
+const equals = document.querySelector('.equals')
+let equations =[]
+let number=""
+let operation=""
+function add(a,b){
+    total = a+b
+    return total
+}
+function sub(a,b){
+    total = a -b
+    return total
+}
+function multi(a,b){
+    total = a*b
+    return total
+}
+function divide(a,b){
+    total = a/b
+    return total
+}
+function operate(a,b,operator){
+    switch(operator){
+        case "+":
+            add(a,b)
+            display.textContent=total
+            break;
+        case "-":
+            sub(a,b)
+            break;
+        case "/":
+            divide(a,b)
+            break;
+        case "*":
+            multi(a,b)
+            break;
+        default:
+            break;
+    }
+}
+numbers.forEach((number)=>{
+    number.addEventListener("click",()=>{
+        display.textContent += number.textContent
     })
+})
+buttons.forEach((button)=>{
+    button.addEventListener("click",()=>{
+        operation = button.textContent
+        number = display.textContent
+        myNumber = parseInt(number)
+        equations.push(myNumber)
+        equations.push(operation)
+        display.textContent=''
+    })
+})
+equals.addEventListener("click",()=>{
+    firstNumber = display.textContent
+    equations.push(parseInt(firstNumber))
+    operate(equations[0], equations[2], equations[1])
+    display.textContent= total
+})
+
+clearButton.addEventListener("click",()=>{
+    equations=[]
+    display.textContent =''
+    number = ''
+    operation =''
 })
 
 
-const calculator = {
-    clear: "c",
-    toggle: "±",
-    percent: "%",
-    divide: "/",
-    number : [0,1,2,3,4,5,6,7,8,9,],
-    period: ".",
-    equals: "=",
-    plus: "+",
-    minus: "-",
-    multiply: "*",
-    add: function (a,b){
-        return this.number[a] + this.number[b]
-    },
-    subtract: function(a,b){
-        return this.number[a] - this.number[b]
-    },
-    multiply: function(a,b){
-        return this.number[a] * this.number[b]
-    },
-    divide: function(a,b){
-        return this.number[a] / this.number[b]
-    },
-    operate: function(a,b,c){
-        let total= 0
-        a = prompt('first number')
-        b = prompt('second number')
-        c = prompt('operator')
-        if(c=="+"){
-            total = add(a,b)
-            return total
-        }else if(c=="-"){
-            total = subtract(a,b)
-            return total
-        }else if(c == "*"){
-            total = multiply(a,b)
-            return total
-        }else if(c== "/"){
-            total = divide(a,b)
-            return total
-        }
-    }
-}
-let numOne = 0
-let numTwo = 0
-
-
-function operate(){
-
-}
-
-
-
-
-// function add(a, b){
-//     return a+b
-// }
-
-// function subtract(a, b){
-//     return a-b
-// }
-
-// function multiply(a, b){
-//     return a * b
-// }
-
-// function divide(a, b){
-//     return a/b
-// }
-
-// function operate(a,b,c){
-//     let total = 0
-//     if(c==add){
-//         total = add(a,b)
-//         return total
-//     }else if(c==subtract){
-//         total = subtract(a,b)
-//         return total
-//     }else if(c == multiply){
-//         total = multiply(a,b)
-//         return total
-//     }else if(c== divide){
-//         total = divide(a,b)
-//         return total
-//     }
-    
-// }

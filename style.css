@@ -43,7 +43,7 @@
     align-content: center;
 }
 .row .zero{
-    flex: 2.02 1 0%;
+    flex: 2.03 1 0%;
 }
 .row div:hover{
     background-color: aliceblue;
