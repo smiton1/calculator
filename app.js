@@ -6,7 +6,7 @@ const equals = document.querySelector('.equals')
 const period = document.querySelector('.period')
 
 let equations =[]
-let number=0
+let number
 let total =0
 let operation=""
 
@@ -75,7 +75,9 @@ buttons.forEach((button)=>{
         operation = button.textContent
         number = display.textContent
         myNumber = Number(number)
-        if(myNumber!=0){
+        if(equations[0] == 0 || equations[0] !=typeof "number "){
+            equations[0] = myNumber
+        }else{
             equations.push(myNumber)
         }
         if(equations[1]){
@@ -83,7 +85,6 @@ buttons.forEach((button)=>{
         }else{
             equations.push(operation)
         }
-
         display.textContent=''
     })
 })
