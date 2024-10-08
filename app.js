@@ -3,9 +3,14 @@ const display = document.querySelector(".display")
 const numbers = document.querySelectorAll(".numbers")
 const clearButton = document.querySelector('.clear')
 const equals = document.querySelector('.equals')
+const period = document.querySelector('.period')
+
 let equations =[]
-let number=""
+let number=0
+let total =0
 let operation=""
+display.textContent=total
+
 function add(a,b){
     total = a+b
     return total
@@ -19,7 +24,16 @@ function multi(a,b){
     return total
 }
 function divide(a,b){
-    total = a/b
+    if(a==0||b==0){
+        return
+    }else{
+        total = a/b
+        return total
+    }
+
+}
+function percent(a,b){
+    total=(a/100) * b
     return total
 }
 function operate(a,b,operator){
@@ -32,42 +46,56 @@ function operate(a,b,operator){
             sub(a,b)
             break;
         case "/":
-            divide(a,b)
-            break;
+                divide(a,b)
+                break;
+
         case "*":
             multi(a,b)
             break;
+        case "%":
+            percent(a,b)
+            break;
+
         default:
             break;
     }
 }
+//number event listener
 numbers.forEach((number)=>{
     number.addEventListener("click",()=>{
         display.textContent += number.textContent
     })
 })
+//other button event listener
 buttons.forEach((button)=>{
     button.addEventListener("click",()=>{
         operation = button.textContent
         number = display.textContent
-        myNumber = parseInt(number)
+        myNumber = Number(number)
         equations.push(myNumber)
         equations.push(operation)
         display.textContent=''
     })
 })
+//run operate functions
 equals.addEventListener("click",()=>{
     firstNumber = display.textContent
-    equations.push(parseInt(firstNumber))
+    equations.push(Number(firstNumber))
     operate(equations[0], equations[2], equations[1])
-    display.textContent= total
+    display.textContent=total
+    equations =[]
 })
 
+//clear
 clearButton.addEventListener("click",()=>{
+    total=0
     equations=[]
     display.textContent =''
     number = ''
     operation =''
 })
 
+if(total!=0){
+    number= total
+}
 
